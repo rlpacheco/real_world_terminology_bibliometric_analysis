@@ -45,9 +45,9 @@ Files (matchted with ordering from **Table 1**)
 
 Code files in .do format for Stata.
 
-1) total_publications: Code for Analysis 1 - Total number of references using “real-world” term in the title or title/abstracts - Figures 1, 2 and Supp figure 1
-3) ratio_references: Code for Analysis 2 - Ratio of retrieved references in comparison to all Medline database - Figures 3 and Supp figure 2
-4) covid_analysis: Code for Analysis 3 - Retrieved references in Covid-19 therapy and prevention-related articles - Figures 4 and 5
+1) [total_publications](rlpacheco/real_world_terminology_bibliometric_analysis/blob/main/total_publications): Code for Analysis 1 - Total number of references using “real-world” term in the title or title/abstracts - Figures 1, 2 and Supp figure 1
+3) [ratio_references](rlpacheco/real_world_terminology_bibliometric_analysis/blob/main/ratio_references): Code for Analysis 2 - Ratio of retrieved references in comparison to all Medline database - Figures 3 and Supp figure 2
+4) [covid_analysis](rlpacheco/real_world_terminology_bibliometric_analysis/blob/main/covid_analysis): Code for Analysis 3 - Retrieved references in Covid-19 therapy and prevention-related articles - Figures 4 and 5
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
