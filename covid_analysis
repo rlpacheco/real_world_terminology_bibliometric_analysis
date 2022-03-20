@@ -1,0 +1,208 @@
+** Real-world bibliometric analysis
+** Rafael Leite Pacheco
+** rleitepacheco@hotmail.com
+** v 1.4
+
+**Code for Analysis 3: Retrieved references in Covid-19 therapy and prevention-related articles (Figures 4 and 5)
+
+******************code starts now******************
+
+clear all
+
+** set your directory (specify the pathway to the folder containing all csv files)
+
+cd "my dir"
+
+*****
+
+*** Covid-19 intervention-related articles ***
+
+** randomized title VS covid intervention
+* search 6 AND 8 (hits 1,780)
+* output PubMed_Timeline_Results_by_Year_rando_t_covid_i_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rando_t_covid_i_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rando_t_covid_i_count
+drop in 1
+
+destring year, replace
+destring rando_t_covid_i_count, replace
+
+save rando_t_covid_i, replace
+
+** randomized title and abstract VS covid intervention
+* search 7 AND 8 (hits 4,522)
+* output PubMed_Timeline_Results_by_Year_rando_ta_covid_i_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rando_ta_covid_i_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rando_ta_covid_i_count
+drop in 1
+
+destring year, replace
+destring rando_ta_covid_i_count, replace
+
+save rando_ta_covid_i, replace
+
+
+** real world title VS covid intervention 
+* search 4 AND 8 (hits 207)
+* output PubMed_Timeline_Results_by_Year_rw_t_covid_i_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rw_t_covid_i_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rw_t_covid_i_count
+drop in 1
+
+destring year, replace
+destring rw_t_covid_i_count, replace
+
+save rw_t_covid_i, replace
+
+
+** real world title and abstract VS covid prevention ** 
+* search 5 AND 8 (hits 757)
+* output PubMed_Timeline_Results_by_Year_rw_ta_covid_i_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rw_ta_covid_i_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rw_ta_covid_i_count
+drop in 1
+
+destring year, replace
+destring rw_ta_covid_i_count, replace
+
+save rw_ta_covid_i, replace
+
+** merging 
+
+merge 1:1 year using rando_t_covid_i
+
+drop _merge
+
+merge 1:1 year using rando_ta_covid_i
+
+drop _merge
+
+merge 1:1 year using rw_t_covid_i
+
+drop _merge
+
+save fortimeseries_covid_i, replace
+
+** Generating Figure 4
+
+use fortimeseries_covid_i, clear
+
+drop if year < 2020
+
+tsset year
+
+tsline rw_t_covid_i_count rw_ta_covid_i_count rando_t_covid_i_count rando_ta_covid_i_count, graphregion(color(white)) ytitle("Total retrieved references crossing Covid-19 therapy filter", size(vsmall)) xtitle("Year", size(vsmall)) ysc(titlegap(2)) xsc(titlegap(2)) ylabel(,format(%12.2gc) labsize(vsmall)) xlabel(2020 2021 2022, labsize(vsmall)) legend(label(1 "Title real-world search") label(2 "Title and abstract real-world search") label(3 "Title randomized search") label(4 "Title and abstract randomized search") size(vsmall)) name(covid_i)
+
+
+*** Covid-19 prevention-related articles ***
+
+** randomized title VS covid prevention
+* search 6 AND 9 (hits 1,538)
+* output PubMed_Timeline_Results_by_Year_rando_t_covid_p_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rando_t_covid_p_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rando_t_covid_p_count
+drop in 1
+
+destring year, replace
+destring rando_t_covid_p_count, replace
+
+save rando_t_covid_p, replace
+
+** randomized title and abstract VS covid prevention ** 
+* search 7 AND 9 (hits 3,840)
+* output PubMed_Timeline_Results_by_Year_rando_ta_covid_p_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rando_ta_covid_p_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rando_ta_covid_p_count
+drop in 1
+
+destring year, replace
+destring rando_ta_covid_p_count, replace
+
+save rando_ta_covid_p, replace
+
+
+** real world title VS covid prevention ** 
+* search 4 AND 9 (hits 174)
+* output PubMed_Timeline_Results_by_Year_rw_t_covid_p_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rw_t_covid_p_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rw_t_covid_p_count
+drop in 1
+
+destring year, replace
+destring rw_t_covid_p_count, replace
+
+save rw_t_covid_p, replace
+
+
+** real world title and abstract VS covid prevention ** 
+* search 5 AND 9 (hits 764)
+* output PubMed_Timeline_Results_by_Year_rw_ta_covid_p_190322
+
+import delimited "PubMed_Timeline_Results_by_Year_rw_ta_covid_p_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 rw_ta_covid_p_count
+drop in 1
+
+destring year, replace
+destring rw_ta_covid_p_count, replace
+
+save rw_ta_covid_p, replace
+
+** merging datasets
+
+merge 1:1 year using rando_t_covid_p
+
+drop _merge
+
+merge 1:1 year using rando_ta_covid_p
+
+drop _merge
+
+merge 1:1 year using rw_t_covid_p
+
+drop _merge
+
+save fortimeseries_covid_p, replace
+
+** Generating Figure 5
+
+use fortimeseries_covid_p
+
+drop if year < 2020
+
+tsset year
+
+tsline rw_t_covid_p_count rw_ta_covid_p_count rando_t_covid_p_count rando_ta_covid_p_count, graphregion(color(white)) ytitle("Total retrieved references crossing Covid-19 prevention filter", size(vsmall)) xtitle("Year", size(vsmall)) ysc(titlegap(2)) xsc(titlegap(2)) ylabel(,format(%12.2gc) labsize(vsmall)) xlabel(2020 2021 2022, labsize(vsmall)) legend(label(1 "Title real-world search") label(2 "Title and abstract real-world search") label(3 "Title randomized search") label(4 "Title and abstract randomized search") size(vsmall)) name(covid_p)
+
+
+******************code ends******************
