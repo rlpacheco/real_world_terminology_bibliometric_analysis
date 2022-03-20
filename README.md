@@ -12,7 +12,7 @@ All codes and files for the article:
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-csv files: you will find 15 csv files. **Do not open** them on Excel or any standard csv reader because of rounding issues will distort the number of extracted references. It is better to read them direct from Stata of other statistical software.
+csv files: you will find 15 csv files. **Do not open** them on Excel or any standard csv reader because of rounding settings that will distort the number of extracted references. It is better to read them direct from Stata of other statistical software.
 
 For replication, we suggest you to place all files in your working directory.
 
