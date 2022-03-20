@@ -10,7 +10,7 @@
 
 clear all
 
-** set your directory
+** set your directory (specify the pathway to the folder containing all csv files)
 
 cd "my dir"
 
