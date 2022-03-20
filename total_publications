@@ -148,7 +148,7 @@ drop if year < 1980
 save rando_ta, replace
 
 
-** merging all files **
+** merging all files 
 
 merge 1:1 year using totals 
 
@@ -176,6 +176,7 @@ drop _merge
 drop if year == 2022
 
 save fortimeseries, replace
+
 
 ** Real-world graph (Figure 1)
 
@@ -211,7 +212,7 @@ tsline t_count ta_count rando_t_count rando_ta_count narrow_count broad_count, y
 
 
 
-** Generate average annual percentual growth increase
+** Generate average annual percentual growth increase (2011 to 2021)
 
 use fortimeseries, clear
 
