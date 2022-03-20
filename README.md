@@ -4,7 +4,9 @@ All codes and files for the article:
 
 **Accelerated rate of published studies with uninformative “real-world” terminology in title and abstracts: a bibliometric analysis of the entire Medline database**
 
-**Authors**: Rafael Leite Pacheco [1,2,3] , Ana Luiza Cabrera Martimbianco [1,4] , Carolina de Oliveira Cruz Latorraca [1,3] , Rachel Riera [1,3]
+**Authors**: 
+
+Rafael Leite Pacheco [1,2,3] , Ana Luiza Cabrera Martimbianco [1,4] , Carolina de Oliveira Cruz Latorraca [1,3] , Rachel Riera [1,3]
 
 **Affiliations**: 
 1) Centre of Health Technology Assessment, Hospital Sírio-Libanês
