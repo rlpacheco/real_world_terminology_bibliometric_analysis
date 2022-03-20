@@ -237,3 +237,7 @@ sum pubchange_rando_ta
 generate pubchange_rando_t = (rando_t_count - l.rando_t_count) / l.rando_t_count
 
 sum pubchange_rando_t
+
+
+
+******************code ends******************
