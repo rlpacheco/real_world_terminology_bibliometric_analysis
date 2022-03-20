@@ -10,10 +10,11 @@ All codes and files for the article:
 
 **Contact for feedbacks and corrections**: rleitepacheco@hotmail.com
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 csv files: you will find 15 csv files. **Do not open** them on Excel or any standard csv reader because of rounding issues will distort the number of extracted references. It is better to read them direct from Stata of other statistical software.
+
+For replication, we suggest you to place all files in your working directory.
 
 Files (matchted with ordering from **Table 1**)
 
@@ -33,7 +34,9 @@ Files (matchted with ordering from **Table 1**)
 14) PubMed_Timeline_Results_by_Year_rando_t_covid_p_190322
 15) PubMed_Timeline_Results_by_Year_rando_ta_covid_p_190322
 
-Detailed conducted searchers (**Table 1**)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**Detailed conducted searchers (**Table 1**)
 
 Searches date 19 March 2022
 
