@@ -10,7 +10,13 @@ All codes and files for the article:
 
 **Contact for feedbacks and corrections**: rleitepacheco@hotmail.com
 
+**Index:**
+1) Datasets
+2) Codes
+3) Detailed searches
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 1) Datasets
 
 csv files: you will find 15 csv files. **Do not open** them on Excel or any standard csv reader because of rounding settings that will distort the number of extracted references. It is better to read them direct from Stata of other statistical software.
 
@@ -35,6 +41,17 @@ Files (matchted with ordering from **Table 1**)
 15) PubMed_Timeline_Results_by_Year_rando_ta_covid_p_190322
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 2) Code files
+
+Code files in .do format for Stata.
+
+1) total_publications: Code for Analysis 1 - Total number of references using “real-world” term in the title or title/abstracts - Figures 1, 2 and Supp figure 1
+3) ratio_references: Code for Analysis 2 - Ratio of retrieved references in comparison to all Medline database - Figures 3 and Supp figure 2
+4) covid_analysis: Code for Analysis 3 - Retrieved references in Covid-19 therapy and prevention-related articles - Figures 4 and 5
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 3) Detailed searches
 
 **Detailed conducted searchers (**Table 1**)
 
