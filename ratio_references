@@ -1,0 +1,189 @@
+** Real-world bibliometric analysis
+** Rafael Leite Pacheco
+** rleitepacheco@hotmail.com
+** v 1.2
+
+**Code for Analysis 2: Ratio of retrieved references in comparison to all Medline database (Figures 3 and Supplementary figure 2)
+
+******************code starts now******************
+
+clear all
+
+** set your directory (specify the pathway to the folder containing all csv files)
+
+cd "my dir"
+
+
+** all Medline studies
+* retriving all studies by year
+
+import delimited "PubMed_Timeline_Results_by_Year_all_190322.csv", clear
+
+drop in 1
+rename v1 year
+rename v2 total_count
+drop in 1
+
+destring year, replace
+destring total_count, replace
+
+save totals, replace
+
+** Broad RCT search
+* retriving all rcts by year
+
+import delimited "PubMed_Timeline_Results_by_Year_ct_190322.csv", clear
+
+
+drop in 1
+rename v1 year
+rename v2 rct_count
+drop in 1
+
+destring year, replace
+destring rct_count, replace
+
+merge 1:1 year using totals
+
+sort year
+
+drop if year < 1970
+
+generate pub_ratio = rct_count / total_count
+
+scatter pub_ratio year, ytitle("References broad RCT filter /" "References Medline", size(vsmall)) xtitle("Year", size(vsmall)) xlabel(,labsize(vsmall)) ylabel(,labsize(vsmall)) legend(off) ysc(titlegap(2)) xsc(titlegap(2)) msize(*.5) graphregion(color(white)) || lowess pub_ratio year, name(broad_rct)
+
+
+
+** Narrow RCT search
+* retriving all rcts by year
+
+import delimited "PubMed_Timeline_Results_by_Year_ct_narrow_190322", clear
+
+drop in 1
+rename v1 year
+rename v2 rct_count
+drop in 1
+
+destring year, replace
+destring rct_count, replace
+
+merge 1:1 year using totals
+
+sort year
+
+drop if year < 1970
+
+
+generate pub_ratio = rct_count / total_count
+
+scatter pub_ratio year, ytitle("References narrow RCT filter /" "References Medline", size(vsmall)) xtitle("Year", size(vsmall)) xlabel(,labsize(vsmall)) ylabel(,labsize(vsmall)) legend(off) ysc(titlegap(2)) xsc(titlegap(2)) msize(*.5) graphregion(color(white)) || lowess pub_ratio year, name(narrow_rct)
+
+
+** Real-world tile and abstract
+* retriving all rwe studies by year
+
+
+import delimited "PubMed_Timeline_Results_by_Year_RWE_190322", clear
+
+drop in 1
+rename v1 year
+rename v2 rct_count
+drop in 1
+
+destring year, replace
+destring rct_count, replace
+
+merge 1:1 year using totals
+
+sort year
+
+drop if year < 1970
+
+generate pub_ratio = rct_count / total_count
+
+scatter pub_ratio year, ytitle("References real-world title-abstract targeted filter /" "References Medline", size(vsmall)) xtitle("Year", size(vsmall)) xlabel(,labsize(vsmall)) ylabel(,labsize(vsmall)) legend(off) ysc(titlegap(2)) xsc(titlegap(2)) msize(*.5) graphregion(color(white)) || lowess pub_ratio year, name(ta_rwe)
+
+
+** Real-world title
+* retriving all rwe studies by year
+
+import delimited "PubMed_Timeline_Results_by_Year_RWE_title_190322", clear
+
+drop in 1
+rename v1 year
+rename v2 rct_count
+drop in 1
+
+destring year, replace
+destring rct_count, replace
+
+merge 1:1 year using totals
+
+sort year
+
+drop if year < 1970
+
+generate pub_ratio = rct_count / total_count
+
+scatter pub_ratio year, ytitle("References real-world title targeted filter /" "References Medline", size(vsmall)) xtitle("Year", size(vsmall)) xlabel(,labsize(vsmall)) ylabel(,labsize(vsmall)) legend(off) ysc(titlegap(2)) xsc(titlegap(2)) msize(*.5) graphregion(color(white)) || lowess pub_ratio year, name(t_rwe)
+
+
+** combining graphs (Supplementary file 2)
+
+graph combine broad_rct narrow_rct ta_rwe t_rwe, name(combined_s) graphregion(color(white))
+
+
+** Randomized title
+* retriving all studies by year
+
+import delimited "PubMed_Timeline_Results_by_Year_rando_title_190322", clear
+
+drop in 1
+rename v1 year
+rename v2 rct_count
+drop in 1
+
+destring year, replace
+destring rct_count, replace
+
+merge 1:1 year using totals
+
+sort year
+
+drop if year < 1970
+
+
+generate pub_ratio = rct_count / total_count
+
+scatter pub_ratio year, ytitle("References randomized title targeted filter /" "References Medline", size(vsmall)) xtitle("Year", size(vsmall)) xlabel(,labsize(vsmall)) ylabel(,labsize(vsmall)) legend(off) ysc(titlegap(2)) xsc(titlegap(2)) msize(*.5) graphregion(color(white)) || lowess pub_ratio year, name(rando_title)
+
+** Randomized title and abstract
+* retriving all studies by year
+
+import delimited "PubMed_Timeline_Results_by_Year_rando_title_abst_190322", clear
+
+drop in 1
+rename v1 year
+rename v2 rct_count
+drop in 1
+
+destring year, replace
+destring rct_count, replace
+
+merge 1:1 year using totals
+
+sort year
+
+drop if year < 1970
+
+generate pub_ratio = rct_count / total_count
+
+scatter pub_ratio year, ytitle("References randomized title-abstract targeted filter /" "References Medline", size(vsmall)) xtitle("Year", size(vsmall)) xlabel(,labsize(vsmall)) ylabel(,labsize(vsmall)) legend(off) ysc(titlegap(2)) xsc(titlegap(2)) msize(*.5) graphregion(color(white)) || lowess pub_ratio year, name(rando_ta)
+
+** combining graphs (Figure 3)
+
+graph combine ta_rwe t_rwe rando_ta rando_title, name(combined_m) graphregion(color(white))
+
+
+******************code ends******************
