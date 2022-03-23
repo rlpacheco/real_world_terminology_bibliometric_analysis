@@ -2,7 +2,7 @@
 
 All codes and files for the article: 
 
-**Accelerated rate of published studies with real-world terminology in titles and abstracts: A bibliometric analysis of the entire Medline database**
+**Increasingly accelerated rate of published studies with real-world terminology in titles and abstracts: A bibliometric analysis of the entire Medline database**
 
 **Authors**: 
 
