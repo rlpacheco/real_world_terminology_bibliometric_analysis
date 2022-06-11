@@ -1,9 +1,11 @@
 ** Real-world bibliometric analysis
 ** Rafael Leite Pacheco
 ** rleitepacheco@hotmail.com
-** v 1.2
+** v 1.3
 
-**Code for Analysis 1: Total number of references using “real-world” term in the title or title/abstracts (Figures 1, 2 and Supplementary figure 1)
+** 11/06/2022
+
+**Code for Analysis 1: Total number of references using "real-world" term in the title or title/abstracts (Figure 1)
 **Code for generate average annual percentual growth increase in the number of references
 
 ******************code starts now******************
@@ -12,7 +14,7 @@ clear all
 
 ** set your directory (specify the pathway to the folder containing all csv files)
 
-cd "my dir"
+cd "C:\Users\rleit\Desktop\Trabalhos 2021\tendency_github\csv files"
 
 ** all results from pubmed
 
@@ -32,45 +34,6 @@ sort year
 
 save totals, replace
 
-
-** broad therapy filter
-
-import delimited "PubMed_Timeline_Results_by_Year_ct_190322.csv", clear
-
-
-drop in 1
-rename v1 year
-rename v2 broad_count
-drop in 1
-
-destring year, replace
-destring broad_count, replace
-
-drop if year < 1980
-
-sort year
-
-save broad_rct, replace
-
-
-** narrow therapy filter
-
-import delimited "PubMed_Timeline_Results_by_Year_ct_narrow_190322", clear
-
-
-drop in 1
-rename v1 year
-rename v2 narrow_count
-drop in 1
-
-destring year, replace
-destring narrow_count, replace
-
-sort year
-
-drop if year < 1980
-
-save narrow_rct, replace
 
 
 ** real world title-abstracts
@@ -109,43 +72,6 @@ drop if year < 1980
 
 save rwe_t, replace
 
-** randomization title 
-
-import delimited "PubMed_Timeline_Results_by_Year_rando_title_190322", clear
-
-
-drop in 1
-rename v1 year
-rename v2 rando_t_count
-drop in 1
-
-destring year, replace
-destring rando_t_count, replace
-
-sort year
-
-drop if year < 1980
-
-save rando_t, replace
-
-** randomization title and abstracts
-
-import delimited "PubMed_Timeline_Results_by_Year_rando_title_abst_190322", clear
-
-
-drop in 1
-rename v1 year
-rename v2 rando_ta_count
-drop in 1
-
-destring year, replace
-destring rando_ta_count, replace
-
-sort year
-
-drop if year < 1980
-
-save rando_ta, replace
 
 
 ** merging all files 
@@ -189,28 +115,6 @@ tsset year
 tsline t_count ta_count, ytitle("Total retrieved references", size(small)) xtitle("Year", size(small)) ysc(titlegap(2)) xsc(titlegap(2)) ylabel(,format(%12.2gc) labsize(small)) xlabel(, labsize(small)) legend(label(1 "Title real-world search") label(2 "Title and abstract real-world search") size(vsmall)) name(rw_graphs) graphregion(color(white))
 
 
-** Title and abstract graph (Figure 2)
-
-use fortimeseries, clear
-
-drop if year < 2000
-
-tsset year
-
-tsline t_count ta_count rando_t_count rando_ta_count, ytitle("Total retrieved references", size(small)) xtitle("Year", size(small)) ysc(titlegap(2)) xsc(titlegap(2)) ylabel(,format(%12.2gc) labsize(small)) xlabel(, labsize(small)) legend(label(1 "Title real-world search") label(2 "Title and abstract real-world search") label(3 "Title randomized search") label(4 "Title and abstract randomized search") size(vsmall)) name(ta_graphs) graphregion(color(white))
-
-
-** combined graph (Supplementary file 1) **
-
-use fortimeseries, clear
-
-drop if year < 2000
-
-tsset year
-
-tsline t_count ta_count rando_t_count rando_ta_count narrow_count broad_count, ytitle("Total retrieved references", size(small)) xtitle("Year", size(small)) ysc(titlegap(2)) xsc(titlegap(2)) ylabel(,format(%12.2gc) labsize(small)) xlabel(, labsize(small)) legend(label(1 "Title real-world search") label(2 "Title and abstract real-world search") label(3 "Title randomized search") label(4 "Title and abstract randomized search") label(5 "Narrow therapy filter") label(6 "Broad therapy filter")size(vsmall)) name(all_graphs) graphregion(color(white))
-
-
 
 ** Generate average annual percentual growth increase (2011 to 2021)
 
@@ -229,15 +133,6 @@ generate pubchange_ta_rw = (ta_count - l.ta_count) / l.ta_count
 
 sum pubchange_ta_rw
 
-
-generate pubchange_rando_ta = (rando_ta_count - l.rando_ta_count) / l.rando_ta_count
-
-sum pubchange_rando_ta
-
-
-generate pubchange_rando_t = (rando_t_count - l.rando_t_count) / l.rando_t_count
-
-sum pubchange_rando_t
 
 
 
